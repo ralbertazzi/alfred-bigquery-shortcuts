@@ -15,15 +15,18 @@ around different projects and datasets, here's an [Alfred](https://www.alfredapp
 ## Before Playing
 
 Before enjoying this workflow you need to run the `bq-refresh` command.
-This command will fetch the list of Google Cloud projects, BigQuery datasets and tables for which you have access and
+This command will fetch the list of Google Cloud projects, BigQuery datasets and tables for which you have authenticated and
 will cache this in your Mac. Depending on how many projects, datasets and tables you have, this command may take from a couple
 of seconds to one minute.
 
-_NOTE 1_: the workflow defines a maximum number of tables per dataset that will be fetched. This is done on purpose to avoid
+_NOTE 1_: to make this workflow access the Google Cloud APIs, you need to have the `gcloud` CLI installed and be
+authenticated through `gcloud auth application-default login`
+
+_NOTE 2_: the workflow defines a maximum number of tables per dataset that will be fetched. This is done on purpose to avoid
 spending a lot of time fetching information from date-sharded tables (where each shard is a separate table). If you really
 wish to fetch even more tables, increase the value of `max_tables_per_dataset` from the "variables" section of the workflow.
 
-_NOTE 2_: you need to run this command every time new datasets and tables are added to your projects
+_NOTE 3_: you need to run this command every time new datasets and tables are added to your projects
 
 ## Usage
 
@@ -35,4 +38,5 @@ There are three simple and similar commands:
 ## Contribution
 
 This is my first attempy of writing Go code and I think the code quality is really bad 🤢
+
 Feel free to suggest improvements / new features!
