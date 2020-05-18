@@ -155,7 +155,7 @@
 	<key>createdby</key>
 	<string>Riccardo Albertazzi</string>
 	<key>description</key>
-	<string></string>
+	<string>A set of shortcuts to quickly open BigQuery Datasets and Tables</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -687,8 +687,10 @@ fi</string>
 		<key>max_tables_per_dataset</key>
 		<string>2000</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>0.0.1</string>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/ralbertazzi/alfred-bigquery-shortcuts</string>
 </dict>
