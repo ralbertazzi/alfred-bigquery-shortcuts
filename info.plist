@@ -543,7 +543,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./bin/refresh -refresh &gt; /dev/null
+				<string>./bin/refresh -max_tables_per_dataset ${max_tables_per_dataset} &gt; /dev/null
 res=$?
 if [ $res -eq "0" ]; then
 	echo "Refresh success"
@@ -587,7 +587,7 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>A set of shortcuts to quickly open BigQuery Datasets and Tables</string>
 	<key>uidata</key>
 	<dict>
 		<key>0260E7A2-C5A5-45C1-8A7C-2736394B531D</key>
@@ -682,8 +682,11 @@ fi</string>
 			<integer>35</integer>
 		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
+	<key>variables</key>
+	<dict>
+		<key>max_tables_per_dataset</key>
+		<string>2000</string>
+	</dict>
 	<key>version</key>
 	<string>0.0.1</string>
 	<key>webaddress</key>

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -125,6 +126,7 @@ func FetchBigQueryDatasets(
 func FetchBigQueryTables(
 	projectId string,
 	datasetId string,
+	maxTablesPerDataset int,
 	ctx context.Context,
 	throttle <-chan time.Time,
 	output chan TablesResponse,
@@ -139,7 +141,6 @@ func FetchBigQueryTables(
 
 	allTables := make([]TableDescription, 0)
 
-	maxTablesPerDataset := 2000
 	maxResults := 1000
 
 	for i, nextPageToken := 0, ""; i < maxTablesPerDataset/maxResults; i++ {
@@ -170,6 +171,10 @@ func init() {
 }
 
 func run() {
+	var maxTablesPerDataset int
+	flag.IntVar(&maxTablesPerDataset, "max_tables_per_dataset", 1000, "maximum number of fetched tables per dataset")
+	flag.Parse()
+
 	ctx := context.Background()
 
 	logger.Printf("Refreshing projects and datasets")
@@ -206,7 +211,7 @@ func run() {
 	for projectId, datasets := range projectsAndDatasets {
 		for _, dataset := range datasets {
 			n_table_responses += 1
-			go FetchBigQueryTables(projectId, dataset.ID, ctx, throttle, tablesChan)
+			go FetchBigQueryTables(projectId, dataset.ID, maxTablesPerDataset, ctx, throttle, tablesChan)
 		}
 	}
 
